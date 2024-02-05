@@ -54,16 +54,108 @@ const foods = [
 const restaurantMenu = document.getElementById('restaurant-menu')
 
 foods.forEach(food => {
+    addFoodImageToRestaurantMenu(food)
+})
+
+
+
+function displayFoodDetails(food){
+    const foodDetailImage = document.querySelector('.detail-image')
+    foodDetailImage.src = food.image
+
+    const foodName = document.querySelector('.name')
+    foodName.textContent = food.name
+    
+    const foodDescriptionDisplay = document.getElementById('description-display')
+    foodDescriptionDisplay.textContent = food.description
+}
+
+displayFoodDetails(foods[0])
+
+
+function addFoodImageToRestaurantMenu(food){
     const foodImage = document.createElement('img')
     foodImage.src = food.image
     restaurantMenu.appendChild(foodImage)
+
+    // Deliverable 1
+    foodImage.addEventListener('click', () => {
+        displayFoodDetails(food)
+     })
+}
+
+
+// const foodDetailImage = document.querySelector('.detail-image')
+// foodDetailImage.src = foods[0].image
+
+// const foodName = document.querySelector('.name') 
+// foodName.textContent = foods[0].name
+
+// const foodDescriptionDisplay = document.querySelector('#description-display')
+// foodDescriptionDisplay.textContent = foods[0].description
+
+
+
+// // Click Event , Alert, Adding to Page after Event
+
+// const button = document.createElement("button")
+// button.textContent = "click me"
+// document.body.append(button)
+// button.addEventListener('click', () => {
+//   alert('You clicked the button')
+//   createAndAppend()
+// })
+
+// function createAndAppend(){
+//     const h1 = document.createElement('h1')
+//     h1.textContent = "Welcome"
+//     document.body.append(h1)
+// }
+
+
+// // Submit Event
+
+// const newFoodForm = document.getElementById('new-food')
+// newFoodForm.addEventListener('submit', (e) => {
+//     e.preventDefault()
+//     console.log("You've submitted")
+// })
+
+
+
+// Deliverable 2 
+
+const newFoodForm = document.getElementById('new-food')
+newFoodForm.addEventListener('submit', (e) => {
+
+    e.preventDefault()
+
+    const newNameInputELement = document.getElementById('new-name')
+    const newImageInputElement = document.getElementById('new-image')
+    const newTextAreaElement = document.getElementById('new-description')
+
+    const newFood = {
+        name: newNameInputELement.value,
+        image: newImageInputElement.value,
+        description: newTextAreaElement.value
+    }
+
+    addFoodImageToRestaurantMenu(newFood)
+
+    newFoodForm.reset()
+
+    // const foodImageElement = document.createElement('img')
+    // foodImageElement.src = newImageInputElement.value 
+    // restaurantMenu.append(foodImageElement)
+
+    // foodImageElement.addEventListener('click', () => {
+    //     displayFoodDetails(newFood)
+    // })
+
+    // displayFoodDetails(newFood)
+
 })
 
-const foodDetailImage = document.querySelector('.detail-image')
-foodDetailImage.src = foods[0].image
 
-const foodName = document.querySelector('.name') 
-foodName.textContent = foods[0].name
 
-const foodDescriptionDisplay = document.querySelector('#description-display')
-foodDescriptionDisplay.textContent = foods[0].description
+
