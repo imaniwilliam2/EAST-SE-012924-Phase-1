@@ -159,3 +159,63 @@ newFoodForm.addEventListener('submit', (e) => {
 
 
 
+// Lecture 6 Deliverables
+
+const foodArrayMenu = document.getElementById('resturant-menu')
+
+// Deliverable 1
+
+fetch('http://localhost:3000/foods')
+.then(res => res.json())
+.then(foods => {
+
+    // Deliverable 4
+    // const foodImages = document.getElementsByClassName('detail-image')
+    // foodImages.src = foods[0].image 
+    
+    // const nameElement = document.getElementsByClassName('name')
+    // nameElement.textContent = foods[0].name
+    
+    // const descriptionElement = document.getElementById('description-display')
+    // descriptionElement.textContent = foods[0].description
+
+    // Deliverable 5
+    displayFoodDetails(foods[0])
+
+    foods.forEach(food => {
+        // Deliverable 2
+    const img = document.createElement('img')
+    img.src = food.image
+    foodArrayMenu.appendChild(img)
+
+        // Deliverable 3
+    addFoodImageToRestaurantMenu(food)
+    })
+        
+})
+
+// Deliverable 3 
+function addFoodImageToRestaurantMenu(food){
+    const newImage = document.createElement('img')
+    newImage.src = food.image
+    foodArrayMenu.appendChild(newImage)
+
+    //  Deliverable 6
+    newImage.addEventListener('click', () => {
+        displayFoodDetails(food)
+    })
+}
+
+// Deliverable 5
+function displayFoodDetails(food){
+    const foodImages = document.getElementsByClassName('detail-image')
+    foodImages.src = food.image 
+
+    const foodNames = document.getElementsByClassName('name')
+    foodNames.textContent = food.name
+
+    const foodDescriptions = document.getElementById('description-display')
+    foodDescriptions.textContent = food.description
+}
+
+
